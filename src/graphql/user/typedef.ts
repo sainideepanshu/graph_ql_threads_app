@@ -8,3 +8,7 @@ export const typeDefs = `#graphql
         profileImageURL: String
     }
 `;
+
+
+
+// ! means required
