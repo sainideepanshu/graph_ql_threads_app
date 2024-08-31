@@ -7,6 +7,7 @@ async function createApolloGraphqlServer(){
   // definition and your set of resolvers.
   const gqlServer = new ApolloServer({
     typeDefs: `
+        ${User.typeDefs}
         type Query{
             ${User.queries} 
         }
@@ -30,54 +31,3 @@ async function createApolloGraphqlServer(){
 }
 
 export default createApolloGraphqlServer;
-
-
-/* 
-
-const gqlServer = new ApolloServer({
-    typeDefs: `
-        type Query{
-            hello: String
-            say (name: String): String 
-        }
-        type Mutation{
-            createUser(firstName: String!,lastName: String!,email: String!,password: String!) : Boolean
-        }
-    `,
-    resolvers: {
-      Query: {
-        hello: () => "Happy Raksha Bandhan",
-        say: (_, { name }: { name: String }) => `Hey ${name} , Jai Shree Ram`,
-      },
-      Mutation: {
-        createUser: async (
-          _,
-          {
-            firstName,
-            lastName,
-            email,
-            password,
-          }: {
-            firstName: string;
-            lastName: string;
-            email: string;
-            password: string;
-          }
-        ) => {
-          await prismaClient.user.create({
-            data: {
-              firstName,
-              lastName,
-              email,
-              password,
-              salt: "rainbow_salt",
-            },
-          });
-
-          return true;
-        },
-      },
-    },
-  });
-
-*/
